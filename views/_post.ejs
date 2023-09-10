@@ -1,0 +1,59 @@
+<li id="post-<%=pt._id%>">
+    <p>
+      <!-- if user is singIn and the who created the 
+        post is equal to the who created the post -->
+      <% if (locals.user && locals.user.id == pt.user.id){ %>
+        <!-- then we able to delete the post form the homeScreen -->
+          <small>
+              <a class="delete-post-btn" href="/posts/destroyPost/<%= pt.id %>">DEL</a>
+          </small>
+
+      <% } %>
+
+      <%=pt.content %>
+      <br>
+      <small>
+          <%=pt.user.name %>
+      </small>
+
+      <!-- CHANGE:display the likes of this post -->
+      <!-- If user is logged in,then show the link to toggle likes -->
+      <!-- else just show the count -->
+      <br>
+      <!-- Study about the data attribute -->
+      <small>
+        <% if(locals.user){ %>
+          <a class="toggle-like-button"  data-likes="<%= pt.likes.length %>" href="/likes/toggle/?id=<%=pt._id%>&type=Post">
+            <%= pt.likes.length %>Likes
+          </a>
+        <% }else{ %>
+            <%= pt.likes.length %> Likes
+        <% } %>
+      </small>
+
+    </p>
+
+    <!-- i will display comment here and only those people who signIn   -->
+    <div class=" post-comments  ">
+          <% if(locals.user){ %>
+              <form id="post-<%= pt._id %>-comment-form" action="/comments/createComment" method="POST">
+                  <input type="text" name="content" placeholder="Add Comment...." required>
+                  <input type="hidden" name="post" value="<%= pt._id %>">
+                  <input type="submit" value="Add comment">
+              </form>
+              
+          <% } %>
+          <div class=" post-comments-list ">
+              <ul id="post-comments-<%= pt._id %>" >
+                  <% for(comment of pt.comments){%>
+                      
+                    <!-- <%/* here is the delete activity of the comments written */%> -->
+                    <%- include('_comment') -%>
+                      
+                  <% } %>
+              </ul>
+
+          </div>
+    </div>
+
+  </li>

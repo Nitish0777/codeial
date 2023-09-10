@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/user_profile.css">
+<!-- <link rel="stylesheet" href="_header.ejs"> -->
+
+<!-- <%- include('_header'); -%> -->
+
+<h1>
+  Profile Page
+</h1>
+
+<!-- user is store in the locals storage -->
+
+<img src="<%= user.avatar %>" alt="<%= user.name %>" width="200" height="200">
+
+
+
+
+<% if(user.id == profile_user.id){%>
+ <!-- if user matches  then show the form   -->
+ <!-- <form action="/users/update/<%=profile_user.id%>" method="POST"> -->
+    <!-- i want user can update the email and name -->
+    <!-- <input type="text" name="name" placeholder="Your Name " value="<%=profile_user.name %>" required> -->
+    <!-- <input type="email" name="email" placeholder="Your Email " value="<%=profile_user.email %>" required> -->
+    <!-- <input type="submit" name="" value="Update"> -->
+ <!-- </form> -->
+ <!-- now we need to create route and controller for submit this -->
+
+<!-- Now we are setting multer so we did in the same form with the help of this -->
+<!-- we can upload file with enctype manner which is safe -->
+
+
+ <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
+    <!-- i want user can update the email and name -->
+    <input type="text" name="name" placeholder="Your Name " value="<%=profile_user.name %>" required>
+    <input type="email" name="email" placeholder="Your Email " value="<%=profile_user.email %>" required>
+<!-- uploading the profile using multer so we need to set into the models/user.js -->
+    <input type="file" name="avatar" placeholder="profile Picture">
+
+    <input type="submit" name="" value="Update">
+ </form>
+
+
+
+
+
+    
+<%}else{%>
+    <!-- else only show the profile information -->
+    <p><%= profile_user.name%></p>
+    <p><%= profile_user.email%></p>
+    
+
+<%} %>
+
+<!-- <%- include('_footer'); -%> -->

@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>
+            <%= title  %>
+        </title>
+        <!-- Noty cdn set here -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+
+        <!-- <link rel="stylesheet" href="/css/layout.css"> -->
+        <!-- <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css"> -->
+
+        <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>">
+        <link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
+        <link rel="stylesheet" href="<%= assetPath('css/footer.css') %>">
+
+        <!-- this is the page where we include the expressStyles -->
+        <%- style %>
+        
+    </head>
+
+    <body>
+        <%- include('_header'); %>
+
+       
+        <main id="layout-main">
+            <!-- this will render home and user_profile -->
+            <%- body %>
+        </main>
+        
+
+
+        <%- include('_footer'); -%>
+
+        <!-- this is the place where we use the expressScripts -->
+        <%- script -%>
+
+
+        <script>
+
+            <% if(flash.success && flash.success.length > 0){ %>
+                
+                    new Noty({
+                    theme:'relax',
+                    text:'<%= flash.success %>',
+                    type:'success',
+                    layout:'topRight',
+                    timeout:1500
+                }).show();
+                    
+            <% } %>
+
+            <% if(flash.error && flash.error.length > 0){ %>
+                
+                new Noty({
+                    theme:'relax',
+                    text:'<%= flash.error %>',
+                    type:'error',
+                    layout:'topRight',
+                    timeout:1500
+                }).show();
+                    
+            <% } %>
+
+        </script>
+        
+    </body>
+</html>

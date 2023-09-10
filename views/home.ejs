@@ -1,0 +1,85 @@
+<!-- <html> -->
+    <!-- <head> -->
+        <!-- <title> -->
+            <!-- <%= title %> -->
+        <!-- </title> -->
+        <!-- adding the home.css through the scss file -->
+        <!-- <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/chat_box.css"> -->
+        <link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+        <link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>">
+    <!-- </head> -->
+
+    <!-- <body> -->
+
+            <div id="home-container">
+
+                <h1> <%=title%> </h1>
+            
+                <section id="feed-post">
+                    <h4>POST</h4>
+                    <!-- Current user exit then post box it is a part of the ejs-->
+                    <% if(locals.user){ %>
+                    <form action="/posts/createPost" id="new-post-form" method="POST">
+                        <textarea name="content" id="" cols="30" rows="3" required></textarea>
+                        <input type="submit" value="POST">
+                    </form>
+                    <% } %>
+
+                    <!-- we are showing displaying our post in homeScreen from here-->
+                    <div id="posts-list-container">
+                        <ul>
+                    
+                            <% for(pt of posts){ %>
+                                
+                                
+                                <%- include('_post') -%>
+                                
+
+                            <% } %>
+                        </ul>
+                    </div>
+                </section>
+                <section id="user-shows">
+                    <h4>All users Display</h4>
+                    <% for(allUser of all_users){ %>
+                        <p>
+                            <a href="/users/profile/<%=allUser.id%>"><%= allUser.name%> </a>
+                            
+                    <%}%>
+                </section>
+
+                <!-- adding the chat box page after this -->
+                <%- include('_chat_box.ejs') -%>
+
+            </div>
+            <!-- <script src="/js/homePost_Comment.js"></script>
+            <script src="/js/homePosts.js"></script> -->
+            <script src="<%= assetPath('js/homePost_Comment.js') %>"></script>
+            <script src="<%= assetPath('js/homePosts.js') %>"></script>
+
+
+
+            <!-- CHANGE:import the script file for toggle likes -->
+            <!-- also run it over for the already present posts and comment on the page -->
+            <!-- <script src="js/toggle_likes.js"></script> -->
+            <script src="<%= assetPath('js/toggle_likes.js') %>"></script>
+
+            <script>
+                $('.toggle-like-button').each(function(){
+                    let self = this;
+                    let toggleLike = new ToggleLike(self);
+                });
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+            <!-- <script src="/js/chat_engine.js"></script> -->
+            <script src="<%= assetPath('js/chat_engine.js')%>"></script>
+            <!-- if user signIn active then only it run -->
+            <% if(locals.user){ %>
+                <script >
+                    // locals.user.email -> will the one which logIn 
+                    new ChatEngine('user-chat-box','<%= locals.user.email %>');
+                </script>
+            <% } %>
+     <!-- </body> -->
+<!-- </html> -->

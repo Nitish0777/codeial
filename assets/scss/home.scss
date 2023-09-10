@@ -1,0 +1,33 @@
+#home-container {
+    color:white;
+    background-color: rgb(44, 71, 80);
+    border:3px solid rgb(70, 12, 12);
+    display:flex;
+    // justify-content:space-around;
+
+    #feed-post{
+        width:70%;
+        padding:10px;
+    }
+    #user-shows{
+        background-color: rgb(79, 21, 82);
+        width:30%;
+        padding:10px;
+        border-left: 2px solid rgb(252, 5, 5);
+        height:323px;
+        p {
+        
+            background-color:rgb(242, 255, 1);
+            // outline-style: none;
+            border:4px solid rgb(67, 24, 141);
+            padding:3px;
+            border-radius: 3px;
+            display:inline-block;
+            // flex:display;
+            flex-direction:row-reverse;
+            flex: content;
+        }
+        
+    }
+
+}

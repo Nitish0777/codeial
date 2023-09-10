@@ -1,0 +1,18 @@
+<!-- CHANGE:: create the code for the chatBox -->
+<!-- validate if user present then only we can chat -->
+<% if(locals.user){%>
+    <div id="user-chat-box">
+        <ul id="chat-messages-list">
+            <li class="other-message">
+                <span>Other Msg</span>
+            </li>
+            <li class="self-message">
+                <span>Self Msg</span>
+            </li>
+        </ul>
+        <div id="chat-message-input-container">
+            <input id="chat-message-input" placeholder="Type message here">
+            <button id="sends-message">Send</button>
+        </div>
+    </div>
+<% } %>    

@@ -1,0 +1,14 @@
+<h1>Sign Up</h1>
+
+<!-- //we are passing data to the user so use POST  -->
+<form action="/users/create" method="POST">
+    <input type="text" name="name" placeholder="Your Name"  required id="signUpF1">
+    <input type="email" name="email" placeholder="Your Email"  required id="signEmail">
+    <input type="password" name="password" placeholder="Password" required id="password1">
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required id="password1">
+    <input type="submit"id="Btn" class="color btn1" value="Sign Up">
+</form>
+
+<p>
+    <a href="/users/auth/google">Google SignIn/SignUP</a>
+</p>
